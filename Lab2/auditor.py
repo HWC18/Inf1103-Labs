@@ -5,7 +5,6 @@ Units_processed = 0
 while True:
     print("Current Total Inventory:", Total_inventory)
     user_input = input("Enter stock quantity or type 'quit' to quit: ")
-
     if Total_inventory >= 500:
         print("Inventory has exceeded its limit")
         break
