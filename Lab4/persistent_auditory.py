@@ -1,25 +1,21 @@
-Total_inventory = 0
-Failed_entries = 0
-Units_processed = 0
 compiled_list = []
 
 def get_valid_input():
     while True:
         product_name = input("Enter the product name (type 'quit' to quit): ")
-        
         if  product_name.replace(' ','').isalpha() == False:
             print('invalid input, please try again')
+            continue
         elif product_name.strip().lower() == 'quit':
             return 'quit'
         else:
             while True:
-        
                 product_amount = input("Enter the product amount (type 'quit' to quit): ")
-
                 if product_amount.strip().lower() == 'quit':
                     return 'quit'
-                elif product_amount.isdigit() == 'quit' or int(product_amount) <= 0:
+                elif product_amount.isdigit() == False or int(product_amount) <= 0:
                     print('invalid input, please try again')
+                    continue
                 else:
                     return product_name,product_amount
 
@@ -32,24 +28,20 @@ def process_order(product_name, product_amount): #use this function to compile u
     clean_last_line = last_line.strip()
     product_id = clean_last_line.split(', ')[0]
     new_product_id = int(product_id) + 1
-    print(new_product_id)
-    print(product_name)
-    print(product_amount)
     if len(compiled_list) != 0:
             new_product_id = int(compiled_list[-1][0]) + 1
     temp_product_info = [new_product_id,product_name,product_amount]
     compiled_list.append(temp_product_info)
-    print(compiled_list)
-        
+    return compiled_list
 
-    
+def save_order(compiled_list):
+    for list in compiled_list:
+        list[0] = str(list[0])
+        list[2] = str(list[2])
+        with open('inventory.txt', 'a') as file:
+            line = f"\n{list[0]}, {list[1]}, {list[2]}"
+            file.write(line)
 
-
-
-
-def generate_report(total_units,failed_attempts):
-    print("Failed Entries:", failed_attempts)
-    print("Units Processed:", total_units)
 
 def load_inventory():
     with open("inventory.txt",'a+') as file:
@@ -63,8 +55,13 @@ while True:
     order_list = []
     new_order = get_valid_input()
     if new_order == 'quit':
-        break
+        try:
+            save_order(finalised_order)
+            print('Order saved to inventory.txt')
+            break
+        except NameError:
+            break
     else:
         order_list.append(list(new_order))
-        process_order(order_list[0][0],order_list[0][1])
+        finalised_order = process_order(order_list[0][0],order_list[0][1])
         
