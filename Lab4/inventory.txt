@@ -1,8 +1,3 @@
 1001, Wireless Mouse, 2
 1002, Keyboard, 1
 1003, USB Cable, 3
-1004, Laptop Stand, 4
-1005, Laptop Stnad, 5
-1006, sofa, 10
-1007, desk, 12
-1008, chair, 9
