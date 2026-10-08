@@ -1,14 +1,1 @@
-[
-    {
-    "ID": "P001",
-    "Name": "Laptop",
-    "Price": "$1200",
-    "Stock": 15
-    },
-    {
-        "ID": "P002",
-        "Name": "Mouse",
-        "Price": "$25.00",
-        "Stock":40
-    }
-]
+[{"ID": "P001", "Name": "Laptop", "Price": "$1200", "Stock": 15}, {"ID": "P002", "Name": "Mouse", "Price": "$25.00", "Stock": 20}, {"ID": "P003", "Name": "Table", "Price": "$300.00", "Stock": 20}, {"ID": "P004", "Name": "Chair", "Price": "$45.00", "Stock": 14}]
