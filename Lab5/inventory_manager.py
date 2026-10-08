@@ -28,6 +28,78 @@ def display_all(inventory):
             result = " | ".join(test)
         print(result)
 
+def update_product(inventory):
+    print("Update Stock")
+    existingIDs = []
+    existingProducts = []
+    for product in inventory:
+        existingIDs.append(product["ID"])
+        existingProducts.append(product)
+
+    while True:
+        ProductID = input("Enter Product ID: ").strip().upper()
+        if not re.match(pattern,ProductID):
+            print("Invalid format, try again.")
+            continue
+        elif ProductID not in existingIDs:
+            print(f"Product ID {ProductID} is not a valid ID, please try again.")
+            continue
+        else:
+            for item in existingProducts:
+                if ProductID in item.values():
+                    print("\nProduct Found")
+                    print(f"Name:{item["Name"]}")
+                    print(f"Current Stock:{item["Stock"]}\n")
+
+                    while True:
+                        try:
+                            NewStock = int(input("New Stock Quantity: "))
+                            if NewStock == 0:
+                                existingProducts.remove(item)
+                                existingIDs.remove(ProductID)
+                                inventory.remove(item)
+                                return
+                            elif NewStock < 0:
+                                print("Negative numbers are not allowed.")
+                                continue
+                            else:
+                                item["Stock"] = NewStock
+                                print("Stock updated successfully !")
+                                return
+                        except ValueError:
+                            print("Invalid input, please try again.")
+                            continue
+
+def search_product(inventory):
+    existingIDs = []
+    existingProducts = []
+    for product in inventory:
+        existingIDs.append(product["ID"])
+        existingProducts.append(product)
+    print("Search For Product")
+
+    try:
+        ProductID = input("Enter a Product ID: ").strip().upper()
+        if not re.match(pattern,ProductID):
+            print("Invalid ID.")
+            return
+        elif ProductID not in existingIDs:
+            print(f"The Product ID {ProductID} does not exist.")
+            return
+        else:
+            for item in existingProducts:
+                if ProductID in item.values():
+                    print("Product Found")
+                    print("-"*37)
+                    print(f"ID:{item["ID"]}")
+                    print(f"Name:{item["Name"]}")
+                    print(f"Price:{item["Price"]}")
+                    print(f"Stock:{item["Stock"]}")
+                    return
+    except ValueError:
+        print("Invalid input.")
+        return  
+
 def add_product(inventory):
     print("Add New Product")
     existingIDs = []
@@ -85,11 +157,17 @@ def add_product(inventory):
     NewProduct = {
         "ID":ProductID,
         "Name":ProductName,
-        "Price":f"{ProductPrice:.2f}",
+        "Price":f"${ProductPrice:.2f}",
         "Stock":Stock
     }
     inventory.append(NewProduct)
 
+def save_inventory(inventory):
+    print("Saving Inventory...")
+    with open("Inventory.json", "w") as file:
+        json.dump(inventory, file)
+    print("Inventory saved successfully to inventory.json")
+    
 def get_valid_input():
     while True:
          try:
@@ -101,7 +179,7 @@ def get_valid_input():
                 return user_input
          except ValueError:
              print("That is not an integer!")
-             
+
 inventory = load_inventory()
 while True:
     print("="*37)
@@ -122,13 +200,16 @@ while True:
         case 2:
             add_product(inventory)
         case 3:
-            pass
+            update_product(inventory)
         case 4:
-            pass
+            search_product(inventory)
         case 5:
-            pass
+            save_inventory(inventory)
         case 6:
+            print("Saving inventory before exit...")
+            save_inventory(inventory)
+            print("Terminating program...")
             break
         case _:
             print("Invalid option")
-    
+    print("\n")
