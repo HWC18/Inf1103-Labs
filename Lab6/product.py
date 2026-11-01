@@ -7,11 +7,16 @@ class Product:
 
     #class method for each object to display its own info
     def display_info(self):
-        print(f"Product ID:{self.ProductID} | Name:{self.Name} | Price:{self.Price:.2f} | Quantity:{self.Quantity}")
+        print(f"Product ID:{self.ProductID} | Name:{self.Name} | Price:${self.Price:.2f} | Quantity:{self.Quantity}")
 
     #class method for each object to update its own quantity
     def update_stock(self, Quantity):
         self.Quantity = Quantity
 
-product1 = Product("P1000","Table",200.00,50)
-product1.display_info()
+    def to_dictionary(self):
+        return {
+            "ID":self.ProductID,
+            "Name":self.Name,
+            "Price":f"${self.Price:.2f}",
+            "Stock":self.Quantity
+        }
