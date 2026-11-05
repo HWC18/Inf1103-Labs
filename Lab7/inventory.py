@@ -69,7 +69,4 @@ class Inventory:
         print("Inventory saved successfully!")
 
 
-#test = Inventory()
-#test.load_products(file='inventory.json')
-#test.search_product("P003")
 

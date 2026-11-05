@@ -14,6 +14,7 @@ class Product(ABC):
     #class method for each object to update its own quantity
     def update_stock(self, Quantity):
         self.Quantity = Quantity
+
     @abstractmethod
     def to_dictionary(self): #consider making this an abstact method as well
         pass
@@ -77,9 +78,6 @@ class DigitalProduct(Product):
             }
 
 
-
-#test = PhysicalProduct("P004", "Keyboard", 123.00, 50, 10)
-#print(type(test.to_dictionary()["ProductType"]))
 
 
 
