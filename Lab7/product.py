@@ -41,7 +41,7 @@ class PhysicalProduct(Product, CanBeShipped):
         print("This product needs to be physically delivered.")
 
     def get_shipping_info(self):
-        shippingCost = self.Weight * 0.25
+        shippingCost = self.Weight * 0.25 + (self.Price * 0.25)
         print(f"Shipping cost: ${shippingCost:.2f}")
 
     def to_dictionary(self):
