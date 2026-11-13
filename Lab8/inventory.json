@@ -1,0 +1,54 @@
+[
+    {
+        "ProductType": "PhysicalProduct",
+        "ID": "P001",
+        "Name": "Wooden Table",
+        "Price": "$1230.55",
+        "Stock": 34,
+        "Weight": "150.65Kg",
+        "Supplier": {
+            "ID": "S001",
+            "Name": "Table Supplies CO",
+            "Contact Email": "table@supplies.com"
+        }
+    },
+    {
+        "ProductType": "PhysicalProduct",
+        "ID": "P002",
+        "Name": "OmniDesk",
+        "Price": "$700.00",
+        "Stock": 123,
+        "Weight": "120.50Kg",
+        "Supplier": {
+            "ID": "S001",
+            "Name": "Table Supplies CO",
+            "Contact Email": "table@supplies.com"
+        }
+    },
+    {
+        "ProductType": "DigitalProduct",
+        "ID": "P003",
+        "Name": "GTA",
+        "Price": "$136.00",
+        "Stock": 500,
+        "Size": "2000.00Mb",
+        "Supplier": {
+            "ID": "S002",
+            "Name": "RockStar",
+            "Contact Email": "RockStar@games.com"
+        }
+    },
+    {
+        "ProductType": "DigitalProduct",
+        "ID": "P004",
+        "Name": "Call Of Duty",
+        "Price": "$100.00",
+        "Stock": 400,
+        "Size": "1500.00Mb",
+        "Supplier": {
+            "ID": "S002",
+            "Name": "RockStar",
+            "Contact Email": "RockStar@games.com"
+        }
+    }
+]
